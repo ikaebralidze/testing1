@@ -1,0 +1,151 @@
+<div class="header">
+  <div class="search pt-3 pb-3">
+    <input
+      class="form-control"
+      type="search"
+      [(ngModel)]="searchInput"
+      placeholder="{{ 'SEARCH' | translate }}"
+      aria-label="Search"
+    />
+
+    <div
+      class="badge bg-warning ms-1 mt-2"
+      *ngFor="let recent of lastReserches"
+      (click)="searchFromBadge(recent)"
+    >
+      {{ recent }}
+    </div>
+    <br />
+    <button type="submit" (click)="search()" class="btn btn-md btn-danger mt-3">
+      {{ "SEARCH" | translate }}
+    </button>
+    <div class="alert alert-warning" *ngIf="emptySearchError">
+      {{ "EMPTY.SEARCH.ERROR" | translate }}
+    </div>
+  </div>
+  <button routerLink="" class="btn btn-md btn-danger">
+    {{ "GO.TO.LIST" | translate }}
+  </button>
+</div>
+<div class="justify-content-center flex-column row d-flex w-100 container">
+  <div *ngIf="selectedAnime$ | async as selectedAnime">
+    <h2 class="align-center mb-3 mt-3">{{ selectedAnime.Title }}</h2>
+    <div class="row mt-2">
+      <div class="col-3 mt-3">
+        <img [src]="selectedAnime.Img_url" alt="" />
+      </div>
+      <div class="feature col">
+        <h2 for="synopsis">{{ "SYNOPSIS" | translate }}</h2>
+        <div id="synopsis">{{ selectedAnime.Synopsis }}</div>
+        <div class="mt-4">
+          <h3>{{ "EPISODES" | translate }}</h3>
+          {{ selectedAnime.Episodes }}
+        </div>
+
+        <div class="row mt-3">
+          <h4 class="form=label">
+            {{ "SEARCH.CHARACTER" | translate }}
+          </h4>
+          <div class="quotes">
+            <input
+              class="form-control col mt-2"
+              type="search"
+              id="quoteseracch"
+              [(ngModel)]="quoteSearchInput"
+              placeholder="{{ 'SEARCH' | translate }}"
+              aria-label="Search"
+            />
+          </div>
+
+          <button
+            class="btn btn-sm btn-danger col-2 mt-2"
+            type="submit"
+            (click)="quoteSearch()"
+          >
+            {{ "SEARCH" | translate }}
+          </button>
+          <div class="alert alert-warning" *ngIf="emptyQuoteSearchError">
+            {{ "EMPTY.SEARCH.ERROR" | translate }}
+          </div>
+        </div>
+        <div *ngIf="searchQuote$ | async as quotes">
+          <h3>{{ quotes.Character }}</h3>
+          <p>{{ quotes.Quote }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <form [formGroup]="form" (submit)="submit(selectedAnime)">
+        <div class="mb-3 mt-2">
+          <label for="rewiew" class="form-label">{{
+            "REWIEW" | translate
+          }}</label>
+          <textarea
+            formControlName="rewiew"
+            class="form-control"
+            id="rewiew"
+            rows="3"
+          >
+          </textarea>
+          <span>
+            {{ "SYMBOLS.LENGTH" | translate }}
+            {{ form.controls.rewiew?.value?.length }}
+          </span>
+        </div>
+        <div class="mb-2 options">
+          <label for="exampleDataList" class="form-label">
+            {{ "STATUS" | translate }}
+          </label>
+
+          <select class="form-select" formControlName="status">
+            <option [value]="status.WatchLater">
+              {{ "WATCH.LATER" | translate }}
+            </option>
+            <option [value]="status.Watched">
+              {{ "WATHCED" | translate }}
+            </option>
+
+            <option [value]="status.Inprogress">
+              {{ "WATCH.INPROGRESS" | translate }}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-10 mb-3 mt-3" *ngIf="rating">
+          <label for="rating" class="form-label">
+            {{ "RATING" | translate }}
+          </label>
+          <div>
+            <span class="ms-2" id="rating" *ngFor="let rate of ratings">
+              <input
+                type="radio"
+                class="form-check-input"
+                formControlName="rating"
+                [value]="rate"
+              />
+            </span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <button type="submit" routerLink="" class="btn btn-success">
+            {{ "ADD" | translate }}
+          </button>
+        </div>
+
+        <ng-container *ngIf="subbmit && !formInvalid">
+          <div
+            class="alert alert-warning w-20"
+            *ngIf="form.controls.rewiew?.errors?.required"
+          >
+            {{ "FIELDS.REQUIRED.CHARACTERS" | translate }}
+          </div>
+          <div
+            class="alert alert-warning w-20"
+            *ngIf="form.controls.option?.errors?.required"
+          >
+            {{ "FIELDS.REQUIRED.OPTIONS" | translate }}
+          </div>
+        </ng-container>
+      </form>
+    </div>
+  </div>
+</div>

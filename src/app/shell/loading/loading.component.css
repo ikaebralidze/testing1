@@ -1,0 +1,13 @@
+.progress {
+  width: 100px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: aquamarine;
+  overflow: hidden;
+}
+
+.progress_fill {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(30, 214, 153);
+}

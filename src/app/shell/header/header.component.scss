@@ -1,0 +1,76 @@
+.example-spacer {
+  flex: auto;
+}
+
+.header {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    150deg,
+    rgba(0, 0, 0, 1) 34%,
+    rgb(61, 19, 56) 100%
+  );
+  width: 100%;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 10px;
+  display: flex;
+  position: relative;
+}
+
+.titile {
+  color: rgb(204, 167, 64);
+  font-size: 3rem;
+  margin-top: 0;
+  padding-top: 0;
+  font-family: "Shadows Into Light", cursive;
+  flex: 1;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+}
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+/* buttons */
+.en-btn {
+  background-image: url("./../../../assets/images/en.png");
+}
+.ka-btn {
+  background-image: url("./../../../assets/images/geo.png");
+}
+.en-btn,
+.ka-btn {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 25px;
+  width: 45px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+.sign-out,
+.sign-up,
+.sign-in {
+  border: none;
+  margin: 0 5px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.sign-in {
+  background-color: #cdf2ca;
+}
+
+.sign-up {
+  background-color: #94b3fd;
+}
+
+.inactive {
+  filter: grayscale(100%);
+}

@@ -1,0 +1,86 @@
+<div class="my-container">
+  <form
+    (ngSubmit)="signUp(form)"
+    #form="ngForm"
+    [mustMatch]="['password', 'reppassword']"
+  >
+    <h1>{{ "SIGNUP" | translate }}</h1>
+
+    <div class="form-floating">
+      <input
+        type="email"
+        name="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+        ngModel
+        required
+      />
+      <label for="floatingInput"> {{ "EMAIL" | translate }} </label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+        #password="ngModel"
+        ngModel
+        required
+      />
+      <label for="floatingPassword"> {{ "PASSWORD" | translate }} </label>
+    </div>
+
+    <div class="form-floating">
+      <input
+        type="password"
+        name="reppassword"
+        class="form-control"
+        id="floatingRepPassword"
+        placeholder="Password"
+        #reppassword="ngModel"
+        ngModel
+        required
+      />
+      <label for="floatingRepPassword">
+        {{ "REPPASSWORD" | translate }}
+      </label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-outline-secondary" type="submit">
+      {{ "SIGNUP" | translate }}
+    </button>
+    <ng-container *ngIf="form.submitted && form.invalid">
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="form.controls.email?.errors?.required"
+      >
+        {{ "EMAIL.REQUIRED" | translate }}
+      </div>
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="form.controls.password?.errors?.required"
+      >
+        {{ "PASSWORD.REQUIRED" | translate }}
+      </div>
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="form.controls.reppassword?.errors?.required"
+      >
+        {{ "REPPASSWORD.REQUIRED" | translate }}
+      </div>
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="form.controls.reppassword?.errors?.mustMatch"
+      >
+        {{ "PASSWORD.MASTMATCH" | translate }}
+      </div>
+    </ng-container>
+    <!-- </div> -->
+  </form>
+</div>

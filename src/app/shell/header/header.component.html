@@ -1,0 +1,42 @@
+<header class="p-3 header">
+  <div class="container">
+    <span class="titile">{{ "TITLE" | translate }}</span>
+
+    <div
+      class="
+        d-flex
+        flex-wrap
+        align-items-cente
+        justify-content-end justify-content-lg-end
+      "
+    >
+      <ng-container *ngIf="!isLogedIn">
+        <button class="sign-up btn btn-md" (click)="toSignUp()">
+          {{ "SIGNUP" | translate }}
+        </button>
+        <button class="sign-in btn btn-md" (click)="toSignIn()">
+          {{ "SIGNIN" | translate }}
+        </button>
+      </ng-container>
+
+      <button
+        *ngIf="isLogedIn"
+        (click)="signOut()"
+        class="sign-out btn btn-danger"
+      >
+        {{ "SIGNOUT" | translate }}
+      </button>
+
+      <button
+        class="en-btn btn btn-lg"
+        (click)="toEn()"
+        [class.inactive]="isEn"
+      ></button>
+      <button
+        class="ka-btn btn btn-lg"
+        (click)="toKa()"
+        [class.inactive]="isKa"
+      ></button>
+    </div>
+  </div>
+</header>
